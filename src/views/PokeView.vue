@@ -6,7 +6,7 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-const poke = ref({});
+const poke = ref(null); // Cambiado de {} a null
 
 const back = () => {
     router.push('/pokemons');
@@ -19,6 +19,7 @@ const getData = async () => {
         poke.value = data;
     } catch (error) {
         console.log(error);
+        poke.value = null;
     }
 }
 
@@ -27,7 +28,10 @@ getData();
 </script>
 
 <template>
-    <img :src="poke.sprites?.front_default" alt="" />
-    <h1>Poke name: {{ $route.params.name }}</h1>
-    <button @click="back">Volver</button>
+    <div v-if="poke">
+        <img :src="poke.sprites?.front_default" alt="" />
+        <h1>Poke name: {{ $route.params.name }}</h1>
+    </div>
+    <h1 v-else>Poke not found</h1>
+    <button @click="back" class="btn btn-outline-primary">Volver</button>
 </template>
