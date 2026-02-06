@@ -8,7 +8,7 @@ const {  double, count } = storeToRefs(useCounter);
 </script>
 
 <template>
-  <h1>Home counetr: {{ count }}</h1>
+  <h1>Home counter: {{ count }}</h1>
   <h2>double: {{ double }}</h2>
   <button @click="increment">Increment</button>
 </template>
