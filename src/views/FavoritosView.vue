@@ -6,6 +6,7 @@ import { computed } from "vue";
 
 const useFavoritos = useFavoritosStore();
 const { favoritos } = storeToRefs(useFavoritos);
+const { remove } = useFavoritos;
 
 const favoritosData = computed(() => ({
     results: favoritos.value,
@@ -34,6 +35,9 @@ const { getTypeClass } = useGetPokemonTypes(favoritosData);
             <span class="badge bg-secondary">{{
                 poke.types?.[0]?.type?.name || "normal"
                 }}</span>
+            <div>
+                <button class="btn btn-danger btn-sm" @click="remove(poke.id)">Eliminar</button>
+            </div>
         </li>
     </ul>
 </template>
