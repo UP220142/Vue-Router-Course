@@ -3,6 +3,7 @@ import { useFavoritosStore } from "@/store/favoritos";
 import { storeToRefs } from "pinia";
 import { useGetPokemonTypes } from "@/composables/getPokeType";
 import { computed } from "vue";
+import { RouterLink } from "vue-router";
 
 const useFavoritos = useFavoritosStore();
 const { favoritos } = storeToRefs(useFavoritos);
@@ -21,8 +22,8 @@ const { getTypeClass } = useGetPokemonTypes(favoritosData);
         <p>No tienes favoritos</p>
     </div>
     <ul v-else class="list-group">
-        <li v-for="poke in favoritos" :key="poke.id" :class="[
-            'list-group-item',
+        <li v-for="poke in favoritos" :key="poke.id" :class="
+            [ 'list-group-item',
             'd-flex',
             'justify-content-between',
             'align-items-center',
@@ -31,13 +32,15 @@ const { getTypeClass } = useGetPokemonTypes(favoritosData);
             'rounded',
             `list-group-item-${getTypeClass(poke.types?.[0]?.type?.name || 'normal')}`,
         ]">
-            {{ poke.name }}
+            <router-link :to="`/pokemons/${poke.name}`" class="text-decoration-none text-dark fw-bold">
+                {{ poke.name }}
+            </router-link>
             <span class="badge bg-secondary">{{
                 poke.types?.[0]?.type?.name || "normal"
-                }}</span>
-            <div>
-                <button class="btn btn-danger btn-sm" @click="remove(poke.id)">Eliminar</button>
-            </div>
+            }}</span>
+            <button class="btn btn-danger btn-sm" @click="remove(poke.id)">
+                Eliminar
+            </button>
         </li>
     </ul>
 </template>

@@ -3,7 +3,6 @@ import { RouterLink } from "vue-router";
 import { useGetData } from "@/composables/getData";
 import { useGetPokemonTypes } from "@/composables/getPokeType";
 
-
 const { data, getData, loading, error } = useGetData();
 const { pokemonsWithTypes, loadingTypes, getTypeClass } =
     useGetPokemonTypes(data);
@@ -21,7 +20,12 @@ getData("https://pokeapi.co/api/v2/pokemon");
         <ul class="list-group mb-2">
             <li v-for="poke in pokemonsWithTypes" :key="poke.name" :class="[
                 'list-group-item',
-                'list-group-item-action',
+                'd-flex',
+                'justify-content-between',
+                'align-items-center',
+                'mb-2',
+                'border',
+                'rounded',
                 `list-group-item-${getTypeClass(poke.type)}`,
             ]">
                 <router-link :to="`/pokemons/${poke.name}`" class="text-decoration-none text-dark">
