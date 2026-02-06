@@ -3,6 +3,7 @@ import { RouterLink } from "vue-router";
 import { useGetData } from "@/composables/getData";
 import { useGetPokemonTypes } from "@/composables/getPokeType";
 
+
 const { data, getData, loading, error } = useGetData();
 const { pokemonsWithTypes, loadingTypes, getTypeClass } =
     useGetPokemonTypes(data);
