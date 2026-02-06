@@ -10,5 +10,5 @@ const {  double, count } = storeToRefs(useCounter);
 <template>
   <h1>Home counter: {{ count }}</h1>
   <h2>double: {{ double }}</h2>
-  <button @click="increment">Increment</button>
+  <button @click="useCounter.increment">Increment</button>
 </template>
