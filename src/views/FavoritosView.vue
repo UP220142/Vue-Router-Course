@@ -3,7 +3,6 @@ import { useFavoritosStore } from "@/store/favoritos";
 import { storeToRefs } from "pinia";
 import { useGetPokemonTypes } from "@/composables/getPokeType";
 import { computed } from "vue";
-import { RouterLink } from "vue-router";
 
 const useFavoritos = useFavoritosStore();
 const { favoritos } = storeToRefs(useFavoritos);
